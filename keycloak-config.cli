@@ -1,0 +1,33 @@
+create realm --realm epita --enabled true
+
+create user-federation-provider --realm epita --provider-id ldap
+	--name "ActiveDir"
+	--priority 1
+	--config vendor=ad
+		editMode=READ_ONLY
+		connectionUrl=ldap://192.168.0.13:389 #to replace with the IP or domain name of the AD domaine controleur
+		bindDn="CN=ldap-bind,OU=Users,DC=epita,DC=edu"
+		bindCredential="passwordAD"
+		usersDn="OU=Users,DC=epita,DC=edu"
+		usernameLDAPAttribute=sAMAccountName
+		userObjectClasses=person
+		searchScope=2
+		pagination=true
+		importEnabled=true
+		syncRegistrations=false
+
+create user-federation-mapper --realm epita \
+  --name "username" \
+  --provider-id user-attribute-ldap-mapper \
+  --provider-user-federation-id "ActiveDirectory" \
+  --config ldap.attribute="sAMAccountName" \
+           user.model.attribute="username" \
+           is.mandatory.in.ldap=false \
+           is.read.only=true
+
+create user-federation-mapper --realm epita \
+  --name "email" \
+  --provider-id user-attribute-ldap-mapper \
+  --provider-user-federation-id "ActiveDirectory" \
+  --config ldap.attribute="mail" \
+           user.model.attribute="email
