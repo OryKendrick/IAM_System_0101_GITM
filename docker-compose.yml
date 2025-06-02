@@ -1,14 +1,28 @@
-version: '3.8'
+version: '3.9'
 
 services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.1
-    command: start-dev --import-realm
+    restart: always
+    command: start --db=postgres --db-url=jdbc:postgresql://postgres/keycloak --db-username=keycloak --db-password=password --http-relative-path=/auth
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-    volumes:
-      - .keycloak-config.cli:/opt/keycloak/data/import/keycloak-config.cli
     ports:
       - "8080:8080"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
 
