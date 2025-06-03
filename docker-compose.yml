@@ -1,5 +1,8 @@
 version: '3.9'
 
+volumes:
+  postgres_data:
+
 services:
   postgres:
     image: postgres:15
@@ -10,19 +13,28 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups
 
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.1
     restart: always
-    command: start --db=postgres --db-url=jdbc:postgresql://postgres/keycloak --db-username=keycloak --db-password=password --http-relative-path=/auth
+    command:
+      - start-dev
+      - --db=postgres
+      - --db-url=jdbc:postgresql://postgres/keycloak
+      - --db-username=keycloak
+      - --db-password=password
+      - --http-relative-path=/auth
+      - --hostname-strict=false
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
-      - "8080:8080"
+      - "8180:8080"
     depends_on:
       - postgres
+    volumes:
+      - ./keycloak-data:/opt/keycloak/data
 
-volumes:
-  postgres_data:
+
 
