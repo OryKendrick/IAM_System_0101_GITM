@@ -1,0 +1,5 @@
+dn: cn=maintenance,cn=employee,ou=groups,dc=epita,dc=edu,dc=org
+objectClass: top
+objectClass: groupOfNames
+cn: employee
+member: cn=admin,dc=epita,dc=edu,dc=org

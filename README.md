@@ -27,15 +27,34 @@
 5. **Export configuration from Keycloak**
 
    ```bash
-   docker exec -it iam_system_0101_gitm-keycloak bash -c '
+   docker exec -it iam_system_0101_gitm-keycloak-1 bash -c '
    /opt/keycloak/bin/kc.sh export \
      --dir /opt/keycloak/data/import \
      --realm EPITA \
      --users realm_file
+
    '
    ```
 
 6. **Shut down the Keycloak system**
    ```bash
    docker compose down
+
    ```
+### How to work with ldap
+
+1. **add group/subgroup**
+edit the add_group.ldif file to replace the value in cn at the first line to the name of the group you want to create.
+Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_group.ldif
+
+If you want to add a subgroup you have the firssst line has to look like this: dn: cn:<subgroup name>, cn:<group name>,...
+2. **add user**
+
+Edit the add_user.ldif file and replace the value in uid with the firstname.lastname of the user you want to add.
+Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_group.ldif
+
+
+3. **add user to group**
+Edit the add_to_group.ldif file and change, in the dn line, the cn value by the name of the group you wan to add a user into (if you want to add to a subgroup don't forget to add the subgroup and group)
+ and , in the member line, replace the uid value by the one of the user you want to add into a group.
+Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_to_group.ldif

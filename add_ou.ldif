@@ -1,0 +1,4 @@
+dn: ou=groups,dc=epita,dc=edu,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: groups

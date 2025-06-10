@@ -1,0 +1,5 @@
+dn: cn=maintenance,cn=employee,ou=groups,dc=epita,dc=edu,dc=org
+changetype: modify
+add: member
+member: uid=alice.marion,ou=users,dc=epita,dc=edu,dc=org
+

@@ -1,0 +1,5 @@
+dn: ou=users,dc=epita,dc=edu,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+

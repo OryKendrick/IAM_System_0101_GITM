@@ -12,6 +12,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backups:/backups
+    networks:
+      - iam_network
 
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.1
@@ -39,6 +41,11 @@ services:
       - postgres
     volumes:
       - ./keycloak-data:/opt/keycloak/data
+    networks:
+            - iam_network
+networks:
+        iam_network:
+                driver: bridge
 
 
 
