@@ -1,6 +1,6 @@
 {
-  "id" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7e",
-  "realm" : "myrealm",
+  "id" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7f",
+  "realm" : "EPITA",
   "notBefore" : 0,
   "defaultSignatureAlgorithm" : "RS256",
   "revokeRefreshToken" : false,
@@ -46,16 +46,8 @@
   "failureFactor" : 30,
   "roles" : {
     "realm" : [ {
-      "id" : "cb4254ea-9c1f-4040-9066-33efa21a15a1",
-      "name" : "professor",
-      "description" : "",
-      "composite" : false,
-      "clientRole" : false,
-      "containerId" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7e",
-      "attributes" : { }
-    }, {
-      "id" : "2a4007d8-06b1-4b85-b17c-17a500e94f71",
-      "name" : "school_admin",
+      "id" : "378d4d31-ce99-406f-973f-1729b81abefd",
+      "name" : "employee-role",
       "description" : "",
       "composite" : false,
       "clientRole" : false,
@@ -76,6 +68,22 @@
       "containerId" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7e",
       "attributes" : { }
     }, {
+      "id" : "1b9f905b-c820-4b2f-9e55-77dcb2483d14",
+      "name" : "employee-admin-role",
+      "description" : "",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7e",
+      "attributes" : { }
+    }, {
+      "id" : "de045316-372a-4257-a3dc-0efb47275e3b",
+      "name" : "employee-maintenance-role",
+      "description" : "",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7e",
+      "attributes" : { }
+    }, {
       "id" : "ecdd51d5-d7e2-4b7e-a88a-e89ba141a2a9",
       "name" : "uma_authorization",
       "description" : "${role_uma_authorization}",
@@ -92,8 +100,16 @@
       "containerId" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7e",
       "attributes" : { }
     }, {
-      "id" : "b4484b89-7f1d-4d86-ba19-c1f47f6a7f0b",
-      "name" : "student",
+      "id" : "84a9d8bc-3c7a-4e05-b8eb-a6cb517cea60",
+      "name" : "student-role",
+      "description" : "",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "63f3d9f8-0084-4e72-9bae-3ecf1e638d7e",
+      "attributes" : { }
+    }, {
+      "id" : "4ab3c1e4-48d2-492a-abe4-98fca961057a",
+      "name" : "teacher-role",
       "description" : "",
       "composite" : false,
       "clientRole" : false,
@@ -141,7 +157,7 @@
         "composite" : true,
         "composites" : {
           "client" : {
-            "realm-management" : [ "manage-identity-providers", "manage-users", "query-users", "query-clients", "view-realm", "manage-realm", "impersonation", "view-events", "view-authorization", "view-clients", "manage-authorization", "query-realms", "create-client", "view-users", "manage-clients", "manage-events", "query-groups", "view-identity-providers" ]
+            "realm-management" : [ "manage-identity-providers", "manage-users", "query-clients", "query-users", "view-realm", "manage-realm", "impersonation", "view-authorization", "view-events", "view-clients", "manage-authorization", "query-realms", "create-client", "view-users", "manage-clients", "manage-events", "query-groups", "view-identity-providers" ]
           }
         },
         "clientRole" : true,
@@ -271,6 +287,14 @@
         "attributes" : { }
       } ],
       "security-admin-console" : [ ],
+      "internal-resources" : [ {
+        "id" : "00c1b1e8-d28b-49d9-93f2-38d98864f68e",
+        "name" : "uma_protection",
+        "composite" : false,
+        "clientRole" : true,
+        "containerId" : "8d8e4149-8075-4341-a436-7d748a01e843",
+        "attributes" : { }
+      } ],
       "admin-cli" : [ ],
       "account-console" : [ ],
       "broker" : [ {
@@ -360,20 +384,30 @@
     }
   },
   "groups" : [ {
-    "id" : "c3f265d9-dc2a-460e-81a9-fb99ed516fb7",
-    "name" : "professor",
-    "path" : "/professor",
-    "subGroups" : [ ],
+    "id" : "b2ccdf9e-fe18-4e4b-a089-24f37beb81f7",
+    "name" : "employee",
+    "path" : "/employee",
+    "subGroups" : [ {
+      "id" : "d12bd4a5-e271-4353-bda9-7e80b27b02b3",
+      "name" : "admin",
+      "path" : "/employee/admin",
+      "parentId" : "b2ccdf9e-fe18-4e4b-a089-24f37beb81f7",
+      "subGroups" : [ ],
+      "attributes" : { },
+      "realmRoles" : [ "employee-admin-role" ],
+      "clientRoles" : { }
+    }, {
+      "id" : "f2904e31-4731-4bee-b23e-754651888a9e",
+      "name" : "maintenance",
+      "path" : "/employee/maintenance",
+      "parentId" : "b2ccdf9e-fe18-4e4b-a089-24f37beb81f7",
+      "subGroups" : [ ],
+      "attributes" : { },
+      "realmRoles" : [ "employee-maintenance-role" ],
+      "clientRoles" : { }
+    } ],
     "attributes" : { },
-    "realmRoles" : [ "professor" ],
-    "clientRoles" : { }
-  }, {
-    "id" : "d12bd4a5-e271-4353-bda9-7e80b27b02b3",
-    "name" : "school_admin",
-    "path" : "/school_admin",
-    "subGroups" : [ ],
-    "attributes" : { },
-    "realmRoles" : [ "school_admin" ],
+    "realmRoles" : [ "employee-role" ],
     "clientRoles" : { }
   }, {
     "id" : "982f823e-006b-4255-b80f-2cca23c352ab",
@@ -381,7 +415,15 @@
     "path" : "/student",
     "subGroups" : [ ],
     "attributes" : { },
-    "realmRoles" : [ "student" ],
+    "realmRoles" : [ "student-role" ],
+    "clientRoles" : { }
+  }, {
+    "id" : "c3f265d9-dc2a-460e-81a9-fb99ed516fb7",
+    "name" : "teacher",
+    "path" : "/teacher",
+    "subGroups" : [ ],
+    "attributes" : { },
+    "realmRoles" : [ "teacher-role" ],
     "clientRoles" : { }
   } ],
   "defaultRole" : {
@@ -424,75 +466,124 @@
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister" : false,
   "webAuthnPolicyPasswordlessAcceptableAaguids" : [ ],
   "webAuthnPolicyPasswordlessExtraOrigins" : [ ],
-  "users" : [ {
-    "id" : "23796982-e86c-46dc-8958-0a1fe168d7e0",
-    "username" : "alice.student",
+  "users" : [ 
+    { "username": "teacher1", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher2", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher3", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher4", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher5", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher6", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher7", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher8", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher9", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher10", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher11", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher12", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher13", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher14", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+    { "username": "teacher15", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/teacher"] },
+
+    { "username": "student1", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student2", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student3", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student4", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student5", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student6", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student7", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student8", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student9", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+    { "username": "student10", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/student"] },
+
+    { "username": "admin1", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/admin"] },
+    { "username": "admin2", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/admin"] },
+    { "username": "admin3", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/admin"] },
+    { "username": "admin4", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/admin"] },
+    { "username": "admin5", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/admin"] },
+
+    { "username": "maintenance1", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/maintenance"] },
+    { "username": "maintenance2", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/maintenance"] },
+    { "username": "maintenance3", "enabled": true, "credentials": [{ "type": "password", "value": "pass123", "temporary": false }], "groups": ["/employee/maintenance"] },
+    {
+    "id" : "e365f243-0ed7-4a16-8a0f-801cbcc68f69",
+    "username" : "alice",
     "firstName" : "alice",
-    "lastName" : "student",
-    "email" : "alice.student@epita.fr",
-    "emailVerified" : false,
-    "createdTimestamp" : 1749053066649,
+    "lastName" : "alice",
+    "email" : "alice.alice@epita.fr",
+    "emailVerified" : true,
+    "createdTimestamp" : 1749494770351,
     "enabled" : true,
     "totp" : false,
-    "credentials" : [ {
-      "id" : "0c695709-6182-487e-bda9-737b4c66f941",
-      "type" : "password",
-      "userLabel" : "My password",
-      "createdDate" : 1749053557254,
-      "secretData" : "{\"value\":\"arDMF5H2K0kCwqzpgTpjRUDzJBpGCddipKkiltJNtOKdNpMS/oSBKPgs9oKPd/a56c+76FF4p7lgep+ilu+guQ==\",\"salt\":\"xEa8E8LRaKwfDMUt3Et3wg==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":210000,\"algorithm\":\"pbkdf2-sha512\",\"additionalParameters\":{}}"
-    } ],
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "VERIFY_EMAIL" ],
+    "realmRoles" : [ "default-roles-myrealm" ],
+    "notBefore" : 0,
+    "groups" : [ "/employee/admin", "/employee" ]
+  }, {
+    "id" : "386990ce-2d16-4436-830c-37ca5ee0aef2",
+    "username" : "bob",
+    "firstName" : "bob",
+    "lastName" : "bob",
+    "email" : "bob.bob@epita.fr",
+    "emailVerified" : true,
+    "createdTimestamp" : 1749494804713,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "default-roles-myrealm", "student" ],
+    "realmRoles" : [ "default-roles-myrealm" ],
+    "notBefore" : 0,
+    "groups" : [ "/employee", "/employee/maintenance" ]
+  }, {
+    "id" : "58ea5371-d263-413e-bbb3-916fcc5458cd",
+    "username" : "carol",
+    "firstName" : "carol",
+    "lastName" : "carol",
+    "email" : "carol.carol@epita.fr",
+    "emailVerified" : true,
+    "createdTimestamp" : 1749494834884,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-myrealm" ],
     "notBefore" : 0,
     "groups" : [ "/student" ]
   }, {
-    "id" : "35a0fc25-1f0a-44f1-870c-948241daf790",
-    "username" : "bob.professor",
-    "firstName" : "bob",
-    "lastName" : "professor",
-    "email" : "bob.professor@epita.fr",
-    "emailVerified" : false,
-    "createdTimestamp" : 1749053129267,
+    "id" : "c0ce4429-eabd-4f37-b03e-33ba0309e8ae",
+    "username" : "david",
+    "firstName" : "david",
+    "lastName" : "david",
+    "email" : "david.david@epita.fr",
+    "emailVerified" : true,
+    "createdTimestamp" : 1749494879400,
     "enabled" : true,
     "totp" : false,
-    "credentials" : [ {
-      "id" : "613dacea-a77e-44d9-b003-60d5a5ce349b",
-      "type" : "password",
-      "userLabel" : "My password",
-      "createdDate" : 1749053575590,
-      "secretData" : "{\"value\":\"u+uX61esZSAar3j+5OdTza2freMUBfZqJgYAXl8rtwRUTCUq9PQwQKutLSxzBMPFCdTn73fHSLLfDYy3xNEzuw==\",\"salt\":\"JB+ZprE1QiDPZp0WrSSXwA==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":210000,\"algorithm\":\"pbkdf2-sha512\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ "UPDATE_PASSWORD" ],
-    "realmRoles" : [ "professor", "default-roles-myrealm" ],
-    "notBefore" : 0,
-    "groups" : [ "/professor" ]
-  }, {
-    "id" : "52aa2811-0623-4890-9c8e-bf72cc3a4ffc",
-    "username" : "carol.admin",
-    "firstName" : "carol",
-    "lastName" : "admin",
-    "email" : "carol.admin@epita.fr",
-    "emailVerified" : false,
-    "createdTimestamp" : 1749053340552,
-    "enabled" : true,
-    "totp" : false,
-    "credentials" : [ {
-      "id" : "f35b79eb-1569-4490-9b39-eb373c118e8d",
-      "type" : "password",
-      "userLabel" : "My password",
-      "createdDate" : 1749053396791,
-      "secretData" : "{\"value\":\"b5UkdPIWJqqyHbshO6MbKY3NtRkte1zNFQ0f9zEBMdvPsrghKt2DihcrgkaB51Ns5hgJKogsA2GmJIj/awG2Kw==\",\"salt\":\"D+FCxerLUVug1jEg2Yg/7g==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":210000,\"algorithm\":\"pbkdf2-sha512\",\"additionalParameters\":{}}"
-    } ],
+    "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "school_admin", "default-roles-myrealm" ],
+    "realmRoles" : [ "default-roles-myrealm" ],
     "notBefore" : 0,
-    "groups" : [ "/school_admin" ]
+    "groups" : [ "/teacher" ]
+  }, {
+    "id" : "156db8a9-6f22-4ce7-9e0e-623430d47564",
+    "username" : "service-account-internal-resources",
+    "emailVerified" : false,
+    "createdTimestamp" : 1749495207878,
+    "enabled" : true,
+    "totp" : false,
+    "serviceAccountClientId" : "internal-resources",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-myrealm" ],
+    "clientRoles" : {
+      "internal-resources" : [ "uma_protection" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
   } ],
   "scopeMappings" : [ {
     "clientScope" : "offline_access",
@@ -600,7 +691,9 @@
     "publicClient" : true,
     "frontchannelLogout" : false,
     "protocol" : "openid-connect",
-    "attributes" : { },
+    "attributes" : {
+      "post.logout.redirect.uris" : "+"
+    },
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
@@ -626,12 +719,300 @@
     "publicClient" : false,
     "frontchannelLogout" : false,
     "protocol" : "openid-connect",
-    "attributes" : { },
+    "attributes" : {
+      "post.logout.redirect.uris" : "+"
+    },
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
     "defaultClientScopes" : [ "web-origins", "acr", "profile", "roles", "email" ],
     "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ]
+  }, {
+    "id" : "8d8e4149-8075-4341-a436-7d748a01e843",
+    "clientId" : "internal-resources",
+    "name" : "",
+    "description" : "",
+    "rootUrl" : "",
+    "adminUrl" : "",
+    "baseUrl" : "",
+    "surrogateAuthRequired" : false,
+    "enabled" : true,
+    "alwaysDisplayInConsole" : false,
+    "clientAuthenticatorType" : "client-secret",
+    "secret" : "ki5OhFSYsRM9xZ1qvgFiTw7o7fsDrQk1",
+    "redirectUris" : [ "/*" ],
+    "webOrigins" : [ "/*" ],
+    "notBefore" : 0,
+    "bearerOnly" : false,
+    "consentRequired" : false,
+    "standardFlowEnabled" : true,
+    "implicitFlowEnabled" : false,
+    "directAccessGrantsEnabled" : true,
+    "serviceAccountsEnabled" : true,
+    "authorizationServicesEnabled" : true,
+    "publicClient" : false,
+    "frontchannelLogout" : true,
+    "protocol" : "openid-connect",
+    "attributes" : {
+      "client.secret.creation.time" : "1749495207",
+      "oauth2.device.authorization.grant.enabled" : "false",
+      "backchannel.logout.revoke.offline.tokens" : "false",
+      "use.refresh.tokens" : "true",
+      "oidc.ciba.grant.enabled" : "false",
+      "client.use.lightweight.access.token.enabled" : "false",
+      "backchannel.logout.session.required" : "true",
+      "client_credentials.use_refresh_token" : "false",
+      "acr.loa.map" : "{}",
+      "require.pushed.authorization.requests" : "false",
+      "tls.client.certificate.bound.access.tokens" : "false",
+      "display.on.consent.screen" : "false",
+      "token.response.type.bearer.lower-case" : "false"
+    },
+    "authenticationFlowBindingOverrides" : { },
+    "fullScopeAllowed" : true,
+    "nodeReRegistrationTimeout" : -1,
+    "protocolMappers" : [ {
+      "id" : "d5833f7f-e014-4793-bfa1-35623ffffa35",
+      "name" : "Client ID",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "client_id",
+        "introspection.token.claim" : "true",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "client_id",
+        "jsonType.label" : "String"
+      }
+    }, {
+      "id" : "f059b464-0dad-4043-bad4-486bccb80d38",
+      "name" : "Client Host",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "clientHost",
+        "introspection.token.claim" : "true",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "clientHost",
+        "jsonType.label" : "String"
+      }
+    }, {
+      "id" : "d3d9aaa6-b927-4ce7-a306-d2189f991484",
+      "name" : "Client IP Address",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usersessionmodel-note-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "user.session.note" : "clientAddress",
+        "introspection.token.claim" : "true",
+        "id.token.claim" : "true",
+        "access.token.claim" : "true",
+        "claim.name" : "clientAddress",
+        "jsonType.label" : "String"
+      }
+    } ],
+    "defaultClientScopes" : [ "web-origins", "acr", "profile", "roles", "email" ],
+    "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ],
+    "authorizationSettings" : {
+      "allowRemoteResourceManagement" : true,
+      "policyEnforcementMode" : "ENFORCING",
+      "resources" : [
+      {
+        "name" : "Admin Portal",
+        "type" : "urn:resource:admin",
+        "ownerManagedAccess" : false,
+        "displayName" : "",
+        "attributes" : { },
+        "_id" : "8c01354a-76c1-4056-9639-4190c5740708",
+        "uris" : [ "/admin/*" ],
+        "scopes" : [ {
+          "name" : "view"
+        }, {
+          "name" : "edit"
+        } ],
+        "icon_uri" : ""
+      }, {
+        "name" : "Maintenance Dashboard",
+        "type" : "urn:resource:maintenance",
+        "ownerManagedAccess" : false,
+        "displayName" : "",
+        "attributes" : { },
+        "_id" : "92de570d-5a18-4bac-8552-32f8320360e1",
+        "uris" : [ "/maintenance/*" ],
+        "scopes" : [ {
+          "name" : "view"
+        }, {
+          "name" : "edit"
+        } ],
+        "icon_uri" : ""
+      }, {
+        "name" : "Course Portal",
+        "type" : "urn:resource:courses",
+        "ownerManagedAccess" : false,
+        "displayName" : "",
+        "attributes" : { },
+        "_id" : "05c83e7b-c94d-4cc5-b9a0-71c971bded3b",
+        "uris" : [ "/courses/*" ],
+        "scopes" : [ {
+          "name" : "view"
+        }, {
+          "name" : "edit"
+        } ],
+        "icon_uri" : ""
+      }, {
+        "name" : "Grade Submission",
+        "type" : "urn:resource:grades",
+        "ownerManagedAccess" : false,
+        "displayName" : "",
+        "attributes" : { },
+        "_id" : "f3d38f5a-73ff-43df-9384-21dcf7723e07",
+        "uris" : [ "/grades/*" ],
+        "scopes" : [ {
+          "name" : "view"
+        }, {
+          "name" : "edit"
+        } ],
+        "icon_uri" : ""
+      }, {
+        "name" : "Employee Portal",
+        "type" : "urn:resource:employee",
+        "ownerManagedAccess" : false,
+        "displayName" : "",
+        "attributes" : { },
+        "_id" : "b6227c2d-c5f8-46d7-8732-35524f172013",
+        "uris" : [ "/employee/*" ],
+        "scopes" : [ {
+          "name" : "view"
+        }, {
+          "name" : "edit"
+        } ],
+        "icon_uri" : ""
+      } ],
+      "policies" : [
+      {
+        "id" : "dfb387c4-98ab-4c25-9b00-68fa28a70d32",
+        "name" : "Administration Access Policy",
+        "description" : "",
+        "type" : "role",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "roles" : "[{\"id\":\"employee-admin-role\",\"required\":false}]"
+        }
+      }, {
+        "id" : "9092a3e7-0706-4fb3-bbe3-72a4d7b51c68",
+        "name" : "Maintenance Access Policy",
+        "description" : "",
+        "type" : "role",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "roles" : "[{\"id\":\"employee-maintenance-role\",\"required\":false}]"
+        }
+      }, {
+        "id" : "16e47fd0-3cd1-4d89-8cc3-91e5ccaa6945",
+        "name" : "Student Access Policy",
+        "description" : "",
+        "type" : "role",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "roles" : "[{\"id\":\"student-role\",\"required\":false}]"
+        }
+      }, {
+        "id" : "df3f6d71-a563-42fe-b8cb-3cdfe08e200d",
+        "name" : "Teacher Access Policy",
+        "description" : "",
+        "type" : "role",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "roles" : "[{\"id\":\"teacher-role\",\"required\":false}]"
+        }
+      }, {
+        "id" : "4ad77d16-54c5-4bba-bf77-cfbc263135d8",
+        "name" : "Employee Access Policy",
+        "description" : "",
+        "type" : "role",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "roles" : "[{\"id\":\"employee-role\",\"required\":false}]"
+        }
+      },
+      {
+        "id" : "bab6c895-6af2-457f-aca3-b5dc3b5b97c6",
+        "name" : "Admin Portal Access",
+        "description" : "",
+        "type" : "resource",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "resources" : "[\"Admin Portal\"]",
+          "applyPolicies" : "[\"Administration Access Policy\"]"
+        }
+      }, {
+        "id" : "4fef7dd8-47fa-4257-9f97-384286de0662",
+        "name" : "Maintenance Dashboard Access",
+        "description" : "",
+        "type" : "resource",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "resources" : "[\"Maintenance Dashboard\"]",
+          "applyPolicies" : "[\"Maintenance Access Policy\"]"
+        }
+      }, {
+        "id" : "5d3e56e4-0df7-4437-a05d-46e0254361c4",
+        "name" : "Course Portal Access",
+        "description" : "",
+        "type" : "resource",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "defaultResourceType" : "",
+          "resources" : "[\"Course Portal\"]",
+          "applyPolicies" : "[\"Student Access Policy\"]"
+        }
+      }, {
+        "id" : "c77df28c-2b81-46da-bc58-357cf7427703",
+        "name" : "Grade Submission Access",
+        "description" : "",
+        "type" : "resource",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "resources" : "[\"Grade Submission\"]",
+          "applyPolicies" : "[\"Teacher Access Policy\"]"
+        }
+      }, {
+        "id" : "8f8a0508-7caa-4ade-acd0-5230c7ec0bef",
+        "name" : "Employee Portal Access",
+        "description" : "",
+        "type" : "resource",
+        "logic" : "POSITIVE",
+        "decisionStrategy" : "UNANIMOUS",
+        "config" : {
+          "resources" : "[\"Employee Portal\"]",
+          "applyPolicies" : "[\"Employee Access Policy\"]"
+        }
+      } ],
+      "scopes" : [ {
+        "id" : "1de4b995-e0db-479d-beed-a37f1ef59ebe",
+        "name" : "view",
+        "iconUri" : "",
+        "displayName" : "view"
+      }, {
+        "id" : "c30d9f81-3054-4a2b-a1db-138fb659f1f8",
+        "name" : "edit",
+        "iconUri" : "",
+        "displayName" : "edit"
+      } ],
+      "decisionStrategy" : "UNANIMOUS"
+    }
   }, {
     "id" : "19d453c4-e90e-4341-bf4c-186c06eae14d",
     "clientId" : "my-client",
@@ -658,6 +1039,7 @@
     "protocol" : "openid-connect",
     "attributes" : {
       "oidc.ciba.grant.enabled" : "false",
+      "post.logout.redirect.uris" : "+",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.session.required" : "true",
       "backchannel.logout.revoke.offline.tokens" : "false"
@@ -687,7 +1069,9 @@
     "publicClient" : false,
     "frontchannelLogout" : false,
     "protocol" : "openid-connect",
-    "attributes" : { },
+    "attributes" : {
+      "post.logout.redirect.uris" : "+"
+    },
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
@@ -795,6 +1179,7 @@
       "config" : {
         "introspection.token.claim" : "true",
         "multivalued" : "true",
+        "userinfo.token.claim" : "true",
         "user.attribute" : "foo",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
@@ -861,7 +1246,8 @@
       "config" : {
         "id.token.claim" : "true",
         "introspection.token.claim" : "true",
-        "access.token.claim" : "true"
+        "access.token.claim" : "true",
+        "userinfo.token.claim" : "true"
       }
     } ]
   }, {
@@ -1292,7 +1678,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-role-list-mapper", "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-usermodel-attribute-mapper", "oidc-address-mapper", "saml-user-attribute-mapper", "oidc-full-name-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "saml-role-list-mapper" ]
       }
     }, {
       "id" : "26674de3-3f09-4689-ba84-a147cdd92f28",
@@ -1301,7 +1687,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-usermodel-attribute-mapper", "saml-role-list-mapper", "oidc-usermodel-property-mapper", "saml-user-attribute-mapper", "oidc-full-name-mapper", "saml-user-property-mapper", "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper", "oidc-address-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper" ]
       }
     }, {
       "id" : "20e62af2-cc00-41ea-aa73-bea2232703cd",
@@ -1919,8 +2305,12 @@
     "cibaExpiresIn" : "120",
     "cibaAuthRequestedUserHint" : "login_hint",
     "oauth2DeviceCodeLifespan" : "600",
+    "clientOfflineSessionMaxLifespan" : "0",
     "oauth2DevicePollingInterval" : "5",
+    "clientSessionIdleTimeout" : "0",
     "parRequestUriLifespan" : "60",
+    "clientSessionMaxLifespan" : "0",
+    "clientOfflineSessionIdleTimeout" : "0",
     "cibaInterval" : "5",
     "realmReusableOtpCode" : "false"
   },
