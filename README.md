@@ -65,3 +65,14 @@ Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_user.ldif
 Edit the add_to_group.ldif file and change, in the dn line, the cn value by the name of the group you wan to add a user into (if you want to add to a subgroup don't forget to add the subgroup and group)
  and , in the member line, replace the uid value by the one of the user you want to add into a group.
 Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_to_group.ldif
+
+4. **Delete a user**
+DO the command ldapdelete -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W "uid=<user_uid>,ou=users,dc=epita,dc=edu,dc=org"
+
+
+4. **Synchronize with keycloak**
+Connect to the keycloak admin interface.
+Go to the EPITA realm.
+Go to User Federation.
+Select the ldap server.
+Go to action and select Synchronize All.
