@@ -32,7 +32,7 @@
      --dir /opt/keycloak/data/import \
      --realm EPITA \
      --users realm_file
-
+     
    '
    ```
 
@@ -45,13 +45,20 @@
 
 1. **add group/subgroup**
 edit the add_group.ldif file to replace the value in cn at the first line to the name of the group you want to create.
+In the cn line, put the value of the first cn of the first line.
 Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_group.ldif
 
 If you want to add a subgroup you have the firssst line has to look like this: dn: cn:<subgroup name>, cn:<group name>,...
 2. **add user**
 
 Edit the add_user.ldif file and replace the value in uid with the firstname.lastname of the user you want to add.
-Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_group.ldif
+In the uid line  put the firstname.lastname.
+In the cn line, put the user full name.
+In the sn line, put the last name of the user.
+In the givenName line, put the first name of the user.
+In the email line, put the online mail addres of the user.
+Finally, in the userPassword line, put the user password.
+Do ldapadd -x -D "cn=admin,dc=epita,dc=edu,dc=org" -W -f add_user.ldif
 
 
 3. **add user to group**

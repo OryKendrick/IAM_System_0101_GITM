@@ -1,11 +1,11 @@
-dn: uid=alice.marion,ou=users,dc=epita,dc=edu,dc=org
+dn: uid=benoit.maint,ou=users,dc=epita,dc=edu,dc=org
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
 objectClass: top
-uid: alice.marion
-cn: Alice Marion
-sn: Marion
-givenName: Alice
-mail: alice.marion@example.org
-userPassword: alicePassword123
+uid: benoit.maint
+cn: Benoit Maint
+sn: Maint
+givenName: Benoit
+mail: benoit.maint@example.org
+userPassword: benoitPassword123
